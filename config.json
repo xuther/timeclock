@@ -1,0 +1,4 @@
+{
+  "MongoDBAddress": "localhost:27017",
+  "MongoTimeclockDBName": "timeclock"
+}
