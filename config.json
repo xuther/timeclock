@@ -1,4 +1,5 @@
 {
   "MongoDBAddress": "localhost:27017",
-  "MongoTimeclockDBName": "timeclock"
+  "MongoTimeclockDBName": "timeclock",
+  "MongoUserCollectionName": "testUser"
 }

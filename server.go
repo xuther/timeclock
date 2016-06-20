@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
+	"github.com/labstack/echo/middleware"
 )
 
 var config = configuration{}
@@ -18,9 +19,11 @@ func main() {
 	config = c
 
 	e := echo.New()
+	e.Pre(middleware.RemoveTrailingSlash())
 
-	e.Post("/api/clockin", clockIn)
-	e.Post("/api/users", postUser)
+	e.Post("/api/users/:userID/clockin", clockInHandler)
+	e.Post("/api/users/:userID/clockout", clockOutHandler)
+	e.Post("/api/users", postUserHandler)
 	e.Static("/pages", "Static")
 	e.Static("/scripts", "Static/scripts")
 

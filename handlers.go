@@ -8,19 +8,39 @@ import (
 	"github.com/labstack/echo"
 )
 
-func clockIn(c echo.Context) error {
-	b, _ := ioutil.ReadAll(c.Request().Body())
-	fmt.Printf("%s", b)
+func clockInHandler(c echo.Context) error {
+	usr := user{ID: c.Param("userID")}
 
-	return nil
+	err := clockIn(usr)
+	if err == nil {
+		c.Response().Write([]byte("Clocked in."))
+	}
+	return err
 }
 
-func postUser(c echo.Context) error {
+func clockOutHandler(c echo.Context) error {
+	usr := user{ID: c.Param("userID")}
+
+	err := clockOut(usr)
+	if err == nil {
+		c.Response().Write([]byte("Clocked out."))
+	}
+	return err
+}
+
+func postUserHandler(c echo.Context) error {
+	fmt.Printf("Posting a user\n")
 	b, _ := ioutil.ReadAll(c.Request().Body())
 
 	var u user
 
 	json.Unmarshal(b, &u)
+	err := validateUser(&u)
+	if err != nil {
+		return err
+	}
+
+	u.Status = "Out"
 
 	return createUser(&u)
 }
