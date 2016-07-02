@@ -3,19 +3,21 @@ package main
 import "time"
 
 type configuration struct {
-	MongoDBAddress          string
-	MongoTimeclockDBName    string
-	MongoUserCollectionName string
+	DBAddress string
 }
 
 type timePunch struct {
-	In  time.Time
-	Out time.Time
+	PID         int64
+	UID         int64
+	In          time.Time
+	Out         time.Time
+	Words       int64
+	Description string
 }
 
 type user struct {
 	Name    string
-	ID      string `bson:"_id,omitempty"`
-	Status  string
+	ID      int64
+	Status  bool
 	punches []timePunch
 }

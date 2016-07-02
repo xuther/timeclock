@@ -4,14 +4,20 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"strconv"
 
 	"github.com/labstack/echo"
 )
 
 func clockInHandler(c echo.Context) error {
-	usr := user{ID: c.Param("userID")}
+	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
+	if err != nil {
+		return err
+	}
 
-	err := clockIn(usr)
+	usr := user{ID: id}
+
+	err = clockIn(usr)
 	if err == nil {
 		c.Response().Write([]byte("Clocked in."))
 	}
@@ -19,13 +25,39 @@ func clockInHandler(c echo.Context) error {
 }
 
 func clockOutHandler(c echo.Context) error {
-	usr := user{ID: c.Param("userID")}
+	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
+	if err != nil {
+		return err
+	}
 
-	err := clockOut(usr)
+	usr := user{ID: id}
+
+	err = clockOut(usr)
 	if err == nil {
 		c.Response().Write([]byte("Clocked out."))
 	}
 	return err
+}
+
+func getLastPunchHandler(c echo.Context) error {
+	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	punch, err := getLastTimepunch(id)
+	if err != nil {
+		return err
+	}
+
+	b, err := json.Marshal(&punch)
+	if err != nil {
+		return err
+	}
+
+	c.Response().Write(b)
+
+	return nil
 }
 
 func postUserHandler(c echo.Context) error {
@@ -40,7 +72,7 @@ func postUserHandler(c echo.Context) error {
 		return err
 	}
 
-	u.Status = "Out"
+	u.Status = false
 
 	return createUser(&u)
 }

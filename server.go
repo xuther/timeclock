@@ -23,6 +23,7 @@ func main() {
 
 	e.Post("/api/users/:userID/clockin", clockInHandler)
 	e.Post("/api/users/:userID/clockout", clockOutHandler)
+	e.Post("/api/users/:userID/lastpunch", getLastPunchHandler)
 	e.Post("/api/users", postUserHandler)
 	e.Static("/pages", "Static")
 	e.Static("/scripts", "Static/scripts")

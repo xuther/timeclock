@@ -1,5 +1,3 @@
 {
-  "MongoDBAddress": "localhost:27017",
-  "MongoTimeclockDBName": "timeclock",
-  "MongoUserCollectionName": "testUser"
+  "DBAddress": "./timeclock.sqlite"
 }
