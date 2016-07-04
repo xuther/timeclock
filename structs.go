@@ -11,6 +11,7 @@ type timePunch struct {
 	UID         int64
 	In          time.Time
 	Out         time.Time
+	Duration    time.Duration
 	Words       int64
 	Description string
 }

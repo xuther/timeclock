@@ -10,6 +10,7 @@ CREATE TABLE `punches` (
     `uid` INTEGER NULL,
     `in` TIMESTAMP NULL,
     `out` TIMESTAMP NULL,
+    `duration` INTEGER NULL,
     `words` INTEGER NULL,
     `description` TEXT NULL,
     FOREIGN KEY(uid) REFERENCES users(uid)

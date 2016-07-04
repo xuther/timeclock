@@ -55,6 +55,7 @@ func clockOut(usr user) error {
 	//complete the punch.
 	if (!punch.In.Equal(time.Time{})) && (punch.Out.Equal(time.Time{})) {
 		punch.Out = time.Now()
+		punch.Duration = (punch.Out.Sub(punch.In))
 
 		err = updatePunch(punch)
 
@@ -70,6 +71,17 @@ func clockOut(usr user) error {
 	}
 	fmt.Printf("Done.")
 	return setUserStatus(usr.ID, false)
+}
+
+//We only need the timepunchID
+func fixMissedOut(punchID int64, stamp time.Time) error {
+
+	return nil
+}
+
+func fixMissedIn(punchID int64, stamp time.Time) error {
+
+	return nil
 }
 
 //Return nil if successful, else returns an error.

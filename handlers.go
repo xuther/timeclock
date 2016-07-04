@@ -9,6 +9,34 @@ import (
 	"github.com/labstack/echo"
 )
 
+func getPunchesHandler(c echo.Context) error {
+	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func getUserHandler(c echo.Context) error {
+	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	usr, err := getUserByID(id)
+	if err != nil {
+		return err
+	}
+
+	b, err := json.Marshal(&usr)
+	if err != nil {
+		return err
+	}
+
+	c.Response().Write(b)
+	return nil
+}
+
 func clockInHandler(c echo.Context) error {
 	id, err := strconv.ParseInt(c.Param("userID"), 10, 64)
 	if err != nil {

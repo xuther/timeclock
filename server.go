@@ -21,10 +21,14 @@ func main() {
 	e := echo.New()
 	e.Pre(middleware.RemoveTrailingSlash())
 
+	e.Post("/api/users", postUserHandler)
 	e.Post("/api/users/:userID/clockin", clockInHandler)
 	e.Post("/api/users/:userID/clockout", clockOutHandler)
-	e.Post("/api/users/:userID/lastpunch", getLastPunchHandler)
-	e.Post("/api/users", postUserHandler)
+
+	e.Get("/api/users/:userID", getUserHandler)
+	e.Get("/api/users/:userID/lastpunch", getLastPunchHandler)
+	e.Get("/api/users/:userID/punches", getPunchesHandler)
+
 	e.Static("/pages", "Static")
 	e.Static("/scripts", "Static/scripts")
 
