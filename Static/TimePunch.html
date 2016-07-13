@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="scripts/clock.js"></script>
+    <link href="style/MainPage.css" rel="stylesheet" type="text/css">
+  </head>
+  </body>
+    <div class="main">
+      <div class="pane">
+        <div class="maintitle uppercase">The Handy Time Stamp</div>
+        <div class="nav">
+          <div class="nav-item nav-timepunch uppercase button selected">Time Punch</div>
+          <div clas="nav-seperator"></div>
+          <div class="nav-item nav-timesheet button uppercase">Timesheet</div>
+          <div clas="nav-seperator"></div>
+          <div class="nav-item nav-data button uppercase">Data</div>
+        </div>
+        <div class="in-out-buttons">
+          <div class="button buttons-in uppercase" id="clock-in">In</div>
+          <div class="button buttons-out uppercase" id="clock-out">Out</div>
+        </div>
+        <div class="status">
+          <div class="status-current status-item">You are currently clocked <b>out</b>.</div>
+          <div class="status-time status-item"></div>
+        </div>
+      </div>
+    </div>
+    <div id="overlay">
+    </div>
+    <div id="out-popup">
+      <div class="popup-main">
+        <div class="uppercase popup-title">Clock Out</div>
+        <div class="popup-row popup-words-written">
+          <div class="popup-label">Words Written:</div>
+          <input class="popup-input" id="words-written-in"></input>
+        </div>
+        <div class="popup-row popup-description">
+          <div class="popup-label">Description:</div>
+          <textarea class="popup-input popup-input-area" id="description-in"></textarea>
+        </div>
+        <div class="filler"></div>
+        <div class="popup-row popup-buttons">
+          <div class="button popup-button" id="save-out">Ok</div>
+          <div class="button popup-button" id="cancel-out">Cancel</div>
+        </div>
+      <div>
+    </div>
+  </body>
+</html>
